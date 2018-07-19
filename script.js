@@ -135,7 +135,7 @@ function createMessageElement(text, member) {
 function addMessageToListDOM(text, member) {
   for (var i = 0; i < word_blacklist.length; i++)
   {
-    text = text.replace(word_blacklist[i], censor(word_blacklist[i]));
+    text = text.toLowerCase().replace(word_blacklist[i], censor(word_blacklist[i]));
   }
   console.log('added message')
   const el = DOM.messages;

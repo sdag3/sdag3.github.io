@@ -9,6 +9,7 @@ const drone = new ScaleDrone(CLIENT_ID, {
 });
 
 let members = [];
+//------@Parents, the list below is our filtered stuff. Pls don't get mad. ty
 var word_blacklist = ["fuck", "shit", "whore", "wanker", "slut", "bitch", "nigger", "nigga", "fck", "motherfuck", "motherfucker", "ass", "dumbass", "bitchass", "dipshit"];
 
 drone.on('open', error => {

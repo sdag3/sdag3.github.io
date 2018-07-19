@@ -9,7 +9,7 @@ const drone = new ScaleDrone(CLIENT_ID, {
 });
 
 let members = [];
-var word_blacklist = ["fuck", "shit", "whore", "wanker", "slut", "bitch", "nigger", "nigga", "fck", "motherfuck", "motherfucker", "ass", "dumbass", "bitchass", "dipshit"];
+var word_blacklist = ["fuck ", "shit ", "whore ", "wanker ", "slut ", "bitch ", "nigger ", "nigga ", "fck ", "motherfuck ", "motherfucker ", "ass ", "dumbass ", "bitchass ", "dipshit "];
 
 drone.on('open', error => {
   if (error) {
@@ -81,7 +81,14 @@ function censor(text) {
   return str;
 }
 
-console.log('censor function check: ' + censor('test'))
+function setCharAt(str, index, chr) {
+    if(index > str.length-1){
+      return str
+    }
+
+    return str.substr(0,index) + chr + str.substr(index+1);
+}
+
 //------------- DOM STUFF
 
 const DOM = {
@@ -124,7 +131,6 @@ function updateMembersDOM() {
 }
 
 function createMessageElement(text, member) {
-  console.log('created message element')
   const el = document.createElement('div');
   el.appendChild(createMemberElement(member));
   el.appendChild(document.createTextNode(text));
@@ -133,11 +139,19 @@ function createMessageElement(text, member) {
 }
 
 function addMessageToListDOM(text, member) {
+  lower_text = text.toLowerCase()
   for (var i = 0; i < word_blacklist.length; i++)
   {
-    text = text.toLowerCase().replace(word_blacklist[i], censor(word_blacklist[i]));
+    lower_text = lower_text.toLowerCase().replace(word_blacklist[i], censor(word_blacklist[i]));
   }
-  console.log('added message')
+  for (var i = 0; i < text; i++)
+  {
+    if (lower_text.charAt(i) === '*') {
+      text = setCharAt(text, i, '*')
+    }
+  }
+
+  text += ' '
   const el = DOM.messages;
   const wasTop = el.scrollTop === el.scrollHeight - el.clientHeight;
   el.appendChild(createMessageElement(text, member));

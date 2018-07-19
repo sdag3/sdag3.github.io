@@ -1,5 +1,4 @@
 
-co
 const CLIENT_ID = 'epKAo3LQwuZb2qmm';
 
 const drone = new ScaleDrone(CLIENT_ID, {

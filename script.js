@@ -144,7 +144,8 @@ function addMessageToListDOM(text, member) {
   {
     lower_text = lower_text.toLowerCase().replace(word_blacklist[i], censor(word_blacklist[i]));
   }
-  for (var i = 0; i < text; i++)
+  console.log(lower_text)
+  for (var i = 0; i < text.length; i++)
   {
     if (lower_text.charAt(i) === '*') {
       text = setCharAt(text, i, '*')

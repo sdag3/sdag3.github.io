@@ -9,7 +9,6 @@ const drone = new ScaleDrone(CLIENT_ID, {
 });
 
 let members = [];
-//------@Parents, the list below is our filtered stuff. Pls don't get mad. ty
 var word_blacklist = ["fuck", "shit", "whore", "wanker", "slut", "bitch", "nigger", "nigga", "fck", "motherfuck", "motherfucker", "ass", "dumbass", "bitchass", "dipshit"];
 
 drone.on('open', error => {
@@ -82,6 +81,7 @@ function censor(text) {
   return str;
 }
 
+console.log('censor function check: ' + censor('test'))
 //------------- DOM STUFF
 
 const DOM = {
@@ -133,7 +133,8 @@ function createMessageElement(text, member) {
 }
 
 function addMessageToListDOM(text, member) {
-  for (String s : word_blacklist) {
+  for (var i = 0; i < word_blacklist.length; i++)
+  {
     text = text.replace(s, censor(s));
   }
   console.log('added message')

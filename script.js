@@ -9,6 +9,7 @@ const drone = new ScaleDrone(CLIENT_ID, {
 });
 
 let members = [];
+var word_blacklist = ["fuck", "shit", "whore", "wanker", "slut", "bitch"];
 
 drone.on('open', error => {
   if (error) {
@@ -71,6 +72,15 @@ function getRandomColor() {
   return '#' + Math.floor(Math.random() * 0xFFFFFF).toString(16);
 }
 
+function censor(text) {
+  str = ''
+  var iter = text.length;
+  while (iter--) {
+    str += '*';
+  }
+  return str;
+}
+
 //------------- DOM STUFF
 
 const DOM = {
@@ -122,6 +132,9 @@ function createMessageElement(text, member) {
 }
 
 function addMessageToListDOM(text, member) {
+  for (String s : word_blacklist) {
+    text = text.replace(s, censor(s));
+  }
   console.log('added message')
   const el = DOM.messages;
   const wasTop = el.scrollTop === el.scrollHeight - el.clientHeight;

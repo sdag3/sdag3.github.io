@@ -132,10 +132,7 @@ function createMessageElement(text, member) {
   return el;
 }
 
-function addMessageToListDOM(text, member) {
-  for (String s : word_blacklist) {
-    text = text.replace(s, censor(s));
-  }
+// Deleted function goes here
   console.log('added message')
   const el = DOM.messages;
   const wasTop = el.scrollTop === el.scrollHeight - el.clientHeight;

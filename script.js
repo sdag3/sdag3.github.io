@@ -1,4 +1,4 @@
-
+console.log('Update 15.0.5');
 const CLIENT_ID = 'epKAo3LQwuZb2qmm';
 
 const drone = new ScaleDrone(CLIENT_ID, {
@@ -139,30 +139,38 @@ function createMessageElement(text, member) {
 }
 
 function addMessageToListDOM(text, member) {
-  lower_text = text.toLowerCase().split(' ');
-  for (var i = 0; i < word_blacklist.length; i++)
-  {
+  if (text.charAt(0) === '/') {
+    text = text.slice(1, text.length)
+    console.log(text)
+    text = text.split(' ')
+    if (text.toLowerCase()[0] === 'magic8b') {
+      text = 'Maybe.'
+    }
+  } else {
+    lower_text = text.toLowerCase().split(' ');
+    for (var i = 0; i < word_blacklist.length; i++)
+    {
 
-    for (var r = 0; r < lower_text.length; r++) {
-      if (String(lower_text[r]) === word_blacklist[i]) {
-        lower_text[r] = censor(lower_text[r])
+      for (var r = 0; r < lower_text.length; r++) {
+        if (String(lower_text[r]) === word_blacklist[i]) {
+          lower_text[r] = censor(lower_text[r])
+        }
+      }
+    }
+
+    var temp_text = ''
+
+    for (var i = 0; i < lower_text.length; i++) {
+      temp_text += lower_text[i]
+      temp_text += ' '
+    }
+
+    for (var i = 0; i < text.length; i++) {
+      if (temp_text.charAt(i) == '*') {
+        text = setCharAt(text, i, '*')
       }
     }
   }
-
-  var temp_text = ''
-
-  for (var i = 0; i < lower_text.length; i++) {
-    temp_text += lower_text[i]
-    temp_text += ' '
-  }
-
-  for (var i = 0; i < text.length; i++) {
-    if (temp_text.charAt(i) == '*') {
-      text = setCharAt(text, i, '*')
-    }
-  }
-
   const el = DOM.messages;
   const wasTop = el.scrollTop === el.scrollHeight - el.clientHeight;
   el.appendChild(createMessageElement(text, member));

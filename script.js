@@ -16,7 +16,7 @@ drone.on('open', error => {
     return console.error(error);
   }
   console.log('Successfully connected to Scaledrone');
-
+console.log('Update 14');
   const room = drone.subscribe('observable-room');
   room.on('open', error => {
     if (error) {

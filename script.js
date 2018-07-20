@@ -1,8 +1,4 @@
-console.log('Update 15.0.5');
-/*
-PATCHNOTES
-  15.0.5: Crude magic8ball command
-*/
+console.log('Update 15.1');
 const CLIENT_ID = 'epKAo3LQwuZb2qmm';
 
 const drone = new ScaleDrone(CLIENT_ID, {
@@ -93,6 +89,33 @@ function setCharAt(str, index, chr) {
     return str.substr(0,index) + chr + str.substr(index+1);
 }
 
+function eval_censor(text) {
+  lower_text = text.toLowerCase().split(' ');
+  for (var i = 0; i < word_blacklist.length; i++)
+  {
+
+    for (var r = 0; r < lower_text.length; r++) {
+      if (String(lower_text[r]) === word_blacklist[i]) {
+        lower_text[r] = censor(lower_text[r])
+      }
+    }
+  }
+
+  var temp_text = ''
+
+  for (var i = 0; i < lower_text.length; i++) {
+    temp_text += lower_text[i]
+    temp_text += ' '
+  }
+
+  for (var i = 0; i < text.length; i++) {
+    if (temp_text.charAt(i) == '*') {
+      text = setCharAt(text, i, '*')
+    }
+  }
+  return text;
+}
+
 //------------- DOM STUFF
 
 const DOM = {
@@ -147,33 +170,19 @@ function addMessageToListDOM(text, member) {
     text = text.slice(1, text.length)
     console.log(text)
     text = text.split(' ')
-    if (text.toLowerCase()[0] === 'magic8b') {
-      text = 'Maybe.'
+    if (text[0].toLowerCase() === 'magic8b') {
+      var temp_text = ''
+
+      for (var i = 0; i < lower_text.length; i++) {
+        temp_text += lower_text[i]
+        temp_text += ' '
+      }
+      text = temp_text
+    } else {
+      text = "That command does not exist."
     }
   } else {
-    lower_text = text.toLowerCase().split(' ');
-    for (var i = 0; i < word_blacklist.length; i++)
-    {
-
-      for (var r = 0; r < lower_text.length; r++) {
-        if (String(lower_text[r]) === word_blacklist[i]) {
-          lower_text[r] = censor(lower_text[r])
-        }
-      }
-    }
-
-    var temp_text = ''
-
-    for (var i = 0; i < lower_text.length; i++) {
-      temp_text += lower_text[i]
-      temp_text += ' '
-    }
-
-    for (var i = 0; i < text.length; i++) {
-      if (temp_text.charAt(i) == '*') {
-        text = setCharAt(text, i, '*')
-      }
-    }
+    eval_censor(text)
   }
   const el = DOM.messages;
   const wasTop = el.scrollTop === el.scrollHeight - el.clientHeight;

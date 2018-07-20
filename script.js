@@ -1,4 +1,4 @@
-console.log('Update 15.1.5');
+console.log('Update 15.2');
 const CLIENT_ID = 'epKAo3LQwuZb2qmm';
 
 const drone = new ScaleDrone(CLIENT_ID, {
@@ -173,7 +173,7 @@ function addMessageToListDOM(text, member) {
     if (text[0].toLowerCase() === 'magic8b') {
       var temp_text = ''
 
-      for (var i = 0; i < text.length; i++) {
+      for (var i = 0; i < lower_text.length; i++) {
         temp_text += lower_text[i]
         temp_text += ' '
       }
@@ -182,7 +182,7 @@ function addMessageToListDOM(text, member) {
       text = "That command does not exist."
     }
   } else {
-    eval_censor(text)
+    text = eval_censor(text)
   }
   const el = DOM.messages;
   const wasTop = el.scrollTop === el.scrollHeight - el.clientHeight;

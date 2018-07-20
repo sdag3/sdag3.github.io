@@ -1,10 +1,11 @@
-const currentUpdate='Update 15.2';
+const currentUpdate='Update 15.3';
 
 console.log(currentUpdate);
-/*PATCH NOTES:
-15.1: Updated word_blacklist
-15.2: Added Patch notes
-15.3 
+/*
+  PATCH NOTES:
+    15.1: Updated word_blacklist
+    15.2: Added Patch notes
+    15.3: Added const currentUpdate (for fun)
 */
 
 const CLIENT_ID = 'epKAo3LQwuZb2qmm';

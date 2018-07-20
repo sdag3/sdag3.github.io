@@ -9,7 +9,7 @@ const drone = new ScaleDrone(CLIENT_ID, {
 });
 
 let members = [];
-var word_blacklist = ["fuck", "shit", "whore", "wanker", "slut", "bitch", "nigger", "nigga", "fck", "motherfuck", "motherfucker", "ass", "dumbass", "bitchass", "dipshit"];
+var word_blacklist = ["fuck", "shit", "whore", "wanker", "slut", "bitch", "nigger", "nigga", "fck", "motherfuck", "motherfucker", "ass", "dumbass", "bitchass", "dipshit", "dick", "dickbag"];
 
 drone.on('open', error => {
   if (error) {
@@ -139,15 +139,26 @@ function createMessageElement(text, member) {
 }
 
 function addMessageToListDOM(text, member) {
-  lower_text = text.toLowerCase()
+  lower_text = text.toLowerCase().split(' ');
   for (var i = 0; i < word_blacklist.length; i++)
   {
-    lower_text = lower_text.toLowerCase().replace(word_blacklist[i], censor(word_blacklist[i]));
+
+    for (var r = 0; r < lower_text.length; r++) {
+      if (String(lower_text[r]) === word_blacklist[i]) {
+        lower_text[r] = censor(lower_text[r])
+      }
+    }
   }
-  console.log(lower_text)
-  for (var i = 0; i < text.length; i++)
-  {
-    if (lower_text.charAt(i) === '*') {
+
+  var temp_text = ''
+
+  for (var i = 0; i < lower_text.length; i++) {
+    temp_text += lower_text[i]
+    temp_text += ' '
+  }
+
+  for (var i = 0; i < text.length; i++) {
+    if (temp_text.charAt(i) == '*') {
       text = setCharAt(text, i, '*')
     }
   }

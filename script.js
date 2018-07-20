@@ -1,6 +1,7 @@
-console.log('Update 15.1');
+console.log('Update 15.2');
 /*PATCH NOTES:
 15.1: Updated word_blacklist
+15.2: Added Patch notes
 */
 
 const CLIENT_ID = 'epKAo3LQwuZb2qmm';

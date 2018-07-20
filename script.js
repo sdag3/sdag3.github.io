@@ -1,6 +1,6 @@
-const currentUpdate='script.js Update 15.4';
+const currentUpdate= 15.4;
 
-console.log(currentUpdate);
+console.log('script.js Update ' + currentUpdate);
 /*
   PATCH NOTES:
     15.1: Updated word_blacklist

@@ -1,4 +1,8 @@
 console.log('Update 15.1');
+/*PATCH NOTES:
+15.1: Updated word_blacklist
+*/
+
 const CLIENT_ID = 'epKAo3LQwuZb2qmm';
 
 const drone = new ScaleDrone(CLIENT_ID, {

@@ -1,4 +1,4 @@
-const currentUpdate='Update 15.3';
+const currentUpdate='script.js Update 15.4';
 
 console.log(currentUpdate);
 /*
@@ -6,6 +6,7 @@ console.log(currentUpdate);
     15.1: Updated word_blacklist
     15.2: Added Patch notes
     15.3: Added const currentUpdate (for fun)
+    15.4: Specify console log update to script.js
 */
 
 const CLIENT_ID = 'epKAo3LQwuZb2qmm';

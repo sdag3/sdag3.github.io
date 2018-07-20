@@ -1,4 +1,8 @@
-console.log('Update 15.5');
+console.log('Update 15.0.5');
+/*
+PATCHNOTES
+  15.0.5: Crude magic8ball command
+*/
 const CLIENT_ID = 'epKAo3LQwuZb2qmm';
 
 const drone = new ScaleDrone(CLIENT_ID, {

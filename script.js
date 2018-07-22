@@ -1,8 +1,9 @@
-console.log('Update 15.2.2');
+console.log('Update 15.2.3');
 /*
 PATCH NOTES:
   15.2.1 Added patch notes. 
   15.2.2 Test Magic8b correction
+  15.2.3 Reverted failed correction from 15.2.2
 */
 const CLIENT_ID = 'epKAo3LQwuZb2qmm';
 
@@ -176,7 +177,11 @@ function addMessageToListDOM(text, member) {
     console.log(text)
     text = text.split(' ')
     if (text[0].toLowerCase() === 'magic8b') {
-      var temp_text = 'Yes'
+var temp_text = ''
+
+      for (var i = 0; i < lower_text.length; i++) {
+        temp_text += lower_text[i]
+        temp_text += ' '
       }
       text = temp_text
     } else {

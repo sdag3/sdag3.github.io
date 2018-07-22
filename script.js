@@ -1,4 +1,8 @@
-console.log('Update 15.2');
+console.log('Update 15.2.1');
+/*
+PATCH NOTES:
+  15.2.1 Added patch notes. 
+*/
 const CLIENT_ID = 'epKAo3LQwuZb2qmm';
 
 const drone = new ScaleDrone(CLIENT_ID, {

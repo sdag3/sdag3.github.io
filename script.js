@@ -15,7 +15,7 @@ const drone = new ScaleDrone(CLIENT_ID, {
 });
 
 let members = [];
-var word_blacklist = ["fuck", "shit", "whore", "wanker", "slut", "bitch", "nigger", "nigga", "fck", "motherfuck", "motherfucker", "ass", "dumbass", "bitchass", "dipshit", "dick", "dickbag", "fucking", "bitching", "dickhead", "asshat"];
+var word_blacklist = ["fuck", "shit", "whore", "wanker", "slut", "bitch", "nigger", "nigga", "fck", "motherfuck", "motherfucker", "ass", "dumbass", "bitchass", "dipshit", "dick", "dickbag", "fucking", "bitching", "dickhead", "asshat", "coon"];
 
 drone.on('open', error => {
   if (error) {
